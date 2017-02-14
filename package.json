@@ -29,6 +29,7 @@
         "url": "https://github.com/itgalaxy/browser-sync-dev-hot-webpack-plugin/issues"
     },
     "files": [
+        "src",
         "!**/__tests__"
     ],
     "main": "src/BrowserSyncDevHotWebpackPlugin.js",
