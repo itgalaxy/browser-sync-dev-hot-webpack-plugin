@@ -61,7 +61,7 @@ class BrowserSyncDevHotWebpackPlugin {
                             }
 
                             if (browserSyncURLUI) {
-                              proxyReq.setHeader('X-Browser-Sync-URL-UI', browserSyncURLUI);
+                                proxyReq.setHeader('X-Browser-Sync-URL-UI', browserSyncURLUI);
                             }
 
                             if (browserSyncURLUIExternal) {
