@@ -54,8 +54,10 @@ class BrowserSyncDevHotWebpackPlugin {
                         (proxyReq) => {
                             proxyReq.setHeader('X-Browser-Sync-URL-Local', browserSyncURLLocal);
                             proxyReq.setHeader('X-Browser-Sync-URL-External', browserSyncURLExternal);
-                            proxyReq.setHeader('X-Browser-Sync-URL-UI', browserSyncURLUI);
-                            proxyReq.setHeader('X-Browser-Sync-URL-UI-External', browserSyncURLUIExternal);
+                            if(browserSyncURLUI && browserSyncURLUIExternal) {
+                              proxyReq.setHeader('X-Browser-Sync-URL-UI', browserSyncURLUI);
+                              proxyReq.setHeader('X-Browser-Sync-URL-UI-External', browserSyncURLUIExternal);
+                            }
                             proxyReq.setHeader('X-Dev-Middleware', 'On');
                             proxyReq.setHeader('X-Hot-Middleware', 'On');
                         }
