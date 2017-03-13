@@ -48,14 +48,14 @@ See related packages docs.
 
 ## Related
 
-- [browser-sync](https://github.com/browsersync/browser-sync) - Keep multiple browsers & devices 
-in sync when building websites.
+-   [browser-sync](https://github.com/browsersync/browser-sync) - Keep multiple browsers & devices 
+    in sync when building websites.
 
-- [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) - Offers a dev middleware for webpack, 
-which arguments a live bundle to a directory.
+-   [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) - Offers a dev middleware for webpack, 
+    which arguments a live bundle to a directory.
 
-- [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) - Webpack hot reloading 
-you can attach to your own server.
+-   [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) - Webpack hot reloading 
+    you can attach to your own server.
 
 ## Contribution
 
