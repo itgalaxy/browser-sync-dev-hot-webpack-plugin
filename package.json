@@ -1,6 +1,6 @@
 {
     "name": "browser-sync-dev-hot-webpack-plugin",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin",
     "license": "MIT",
     "author": "itgalaxy <development@itgalaxy.company>",

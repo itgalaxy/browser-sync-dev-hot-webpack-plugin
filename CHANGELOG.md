@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-# Head
+# 0.0.3 - 2017-03-13
 
 -   Fixed: don't crush if `urls.local`, or `urls.external`, or `urls.ui`, or `urls.ui-external` 
     in `browser-sync` options are disabled.
