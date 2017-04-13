@@ -1,6 +1,6 @@
 {
     "name": "browser-sync-dev-hot-webpack-plugin",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin",
     "license": "MIT",
     "author": "itgalaxy <development@itgalaxy.company>",
@@ -29,8 +29,7 @@
         "url": "https://github.com/itgalaxy/browser-sync-dev-hot-webpack-plugin/issues"
     },
     "files": [
-        "src",
-        "!**/__tests__"
+        "src"
     ],
     "main": "src/BrowserSyncDevHotWebpackPlugin.js",
     "dependencies": {
@@ -38,6 +37,7 @@
     },
     "devDependencies": {
         "ajv-cli": "^1.1.0",
+        "browser-sync":"^2.18.8",
         "eslint": "^3.15.0",
         "eslint-plugin-ava": "^4.0.0",
         "eslint-plugin-import": "^2.2.0",
@@ -52,7 +52,10 @@
         "npm-run-all": "^4.0.0",
         "package-schema": "^1.0.0",
         "remark-cli": "^3.0.0",
-        "remark-preset-lint-itgalaxy": "^6.0.0"
+        "remark-preset-lint-itgalaxy": "^6.0.0",
+        "webpack": "^1 || ^2 || ^2.0.0-beta || ^2.1.0-beta || ^2.2.0-rc.0",
+        "webpack-dev-middleware": "^1.0.0",
+        "webpack-hot-middleware": "^2.0.0"
     },
     "peerDependencies": {
         "browser-sync": "^2.0.0",

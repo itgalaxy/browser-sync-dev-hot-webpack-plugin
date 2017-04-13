@@ -5,7 +5,7 @@
 [![dependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
 [![devDependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/dev-status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin?type=dev)
 
-Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin.
+Combines `browser-sync`, `webpack-dev-middleware`, and `webpack-hot-middleware` into one plugin.
 
 ## Install
 
@@ -27,9 +27,9 @@ const webpackConfig = {
     plugins: [
         // Other plugins...
         new BrowserSyncHotPlugin({
-            browserSyncOptions: BROWSER_SYNC_OPTIONS,
-            devMiddlewareOptions: DEV_MIDDLEWARE_OPTIONS,
-            hotMiddlewareOptions: HOT_MIDDLEWARE_OPTIONS,
+            browserSync: BROWSER_SYNC_OPTIONS,
+            devMiddleware: DEV_MIDDLEWARE_OPTIONS,
+            hotMiddleware: HOT_MIDDLEWARE_OPTIONS,
             callback() {
                 console.log('Callback')
             }

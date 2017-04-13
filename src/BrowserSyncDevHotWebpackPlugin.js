@@ -1,28 +1,38 @@
 'use strict';
 
-/* eslint-disable node/no-missing-require */
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+/* eslint-disable no-sync */
+const EventEmitter = require('events');
 const browserSync = require('browser-sync');
-/* eslint-enable node/no-missing-require */
 const merge = require('deepmerge');
+const { desire } = require('./utils');
 
-class BrowserSyncDevHotWebpackPlugin {
+const webpackDevMiddleware = desire('webpack-dev-middleware');
+const webpackHotMiddleware = desire('webpack-hot-middleware');
+
+class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
     constructor(options) {
-        this.watcher = null;
+        super();
+
         this.compiler = null;
+        this.middleware = [];
+        this.watcher = browserSync.create();
         this.options = merge.all([
             {
-                browserSyncOptions: {},
+                browserSync: {},
                 callback() {}, // eslint-disable-line no-empty-function
-                devMiddlewareOptions: {
+                devMiddleware: {
                     noInfo: true,
                     stats: false
                 },
-                hotMiddlewareOptions: {}
+                hotMiddleware: {}
             },
             options
         ]);
+    }
+
+    registerEvents() {
+        this.on('webpack.compilation', () => this.watcher.notify('Rebuilding...'));
+        this.once('webpack.done', this.start.bind(this));
     }
 
     apply(compiler) {
@@ -30,81 +40,113 @@ class BrowserSyncDevHotWebpackPlugin {
             return;
         }
 
+        this.registerEvents();
         this.compiler = compiler;
 
-        compiler.plugin('done', () => {
-            if (!this.watcher) {
-                this.watcher = browserSync.create();
-                compiler.plugin('compilation', () => this.watcher.notify('Rebuilding...'));
-                this.start();
-            }
-        });
+        compiler.plugin('compilation', this.emit.bind(this, 'webpack.compilation'));
+        compiler.plugin('done', this.emit.bind(this, 'webpack.done'));
     }
 
-    start() {
-        let browserSyncURLLocal = 'initialization';
-        let browserSyncURLExternal = 'initialization';
-        let browserSyncURLUI = 'initialization';
-        let browserSyncURLUIExternal = 'initialization';
-        const watcherConfig = merge.all([
+    setupWebpackDevMiddleware() {
+        this.webpackDevMiddleware = webpackDevMiddleware(this.compiler, merge.all([
             {
-                proxy: {
-                    middleware: this.middleware(),
-                    proxyReq: [
-                        (proxyReq) => {
-                            if (browserSyncURLLocal) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-Local', browserSyncURLLocal);
-                            }
-
-                            if (browserSyncURLExternal) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-External', browserSyncURLExternal);
-                            }
-
-                            if (browserSyncURLUI) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-UI', browserSyncURLUI);
-                            }
-
-                            if (browserSyncURLUIExternal) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-UI-External', browserSyncURLUIExternal);
-                            }
-
-                            proxyReq.setHeader('X-Dev-Middleware', 'On');
-                            proxyReq.setHeader('X-Hot-Middleware', 'On');
-                        }
-                    ]
-                }
+                publicPath: this.options.publicPath || this.compiler.options.output.publicPath
             },
-            this.options.browserSyncOptions
-        ]);
+            this.compiler.options.devServer || {},
+            this.options.devMiddleware
+        ]));
 
-        this.watcher.init(watcherConfig, (error, bs) => {
-            if (error) {
-                throw error;
-            }
-
-            const URLs = bs.getOption('urls');
-
-            browserSyncURLLocal = URLs.get('local');
-            browserSyncURLExternal = URLs.get('external');
-            browserSyncURLUI = URLs.get('ui');
-            browserSyncURLUIExternal = URLs.get('ui-external');
-
-            this.options.callback.bind(this);
-        });
+        this.middleware.push(this.webpackDevMiddleware);
     }
 
-    middleware() {
-        const hotMiddlewareOptions = merge.all([
+    setupWebpackHotMiddleware() {
+        this.webpackHotMiddleware = webpackHotMiddleware(this.compiler, merge.all([
             {
                 log: this.watcher.notify.bind(this.watcher)
             },
-            this.options.hotMiddlewareOptions
+            this.options.hotMiddleware
+        ]));
+
+        this.middleware.push(this.webpackHotMiddleware);
+    }
+
+    config() {
+        this.browserSyncURLLocal = null;
+        this.browserSyncURLExternal = null;
+        this.browserSyncURLUI = null;
+        this.browserSyncURLUIExternal = null;
+
+        this.options.browserSync = merge.all([
+            {
+                proxy: {
+                    middleware: this.middleware,
+                    proxyReq: [
+                        (proxyReq) => {
+                            if (this.browserSyncURLLocal) {
+                                proxyReq.setHeader('X-Browser-Sync-URL-Local', this.browserSyncURLLocal);
+                            }
+
+                            if (this.browserSyncURLExternal) {
+                                proxyReq.setHeader('X-Browser-Sync-URL-External', this.browserSyncURLExternal);
+                            }
+
+                            if (this.browserSyncURLUI) {
+                                proxyReq.setHeader('X-Browser-Sync-URL-UI', this.browserSyncURLUI);
+                            }
+
+                            if (this.browserSyncURLUIExternal) {
+                                proxyReq.setHeader('X-Browser-Sync-URL-UI-External', this.browserSyncURLUIExternal);
+                            }
+
+                            if (webpackDevMiddleware) {
+                                proxyReq.setHeader('X-Dev-Middleware', 'On');
+                            }
+
+                            if (webpackHotMiddleware) {
+                                proxyReq.setHeader('X-Hot-Middleware', 'On');
+                            }
+                        }
+                    ]
+                },
+                watchOptions: {
+                    ignoreInitial: true
+                }
+            },
+            this.options.browserSync
         ]);
+    }
 
-        this.webpackDevMiddleware = webpackDevMiddleware(this.compiler, this.options.devMiddlewareOptions);
-        this.webpackHotMiddleware = webpackHotMiddleware(this.compiler, hotMiddlewareOptions);
+    setup() {
+        if (webpackDevMiddleware) {
+            this.setupWebpackDevMiddleware();
+        }
 
-        return [this.webpackDevMiddleware, this.webpackHotMiddleware];
+        if (webpackHotMiddleware) {
+            this.setupWebpackHotMiddleware();
+        }
+
+        this.config();
+    }
+
+    start() {
+        this.setup();
+
+        process.nextTick(() => {
+            this.watcher.init(this.options.browserSync, (error, bs) => {
+                if (error) {
+                    throw error;
+                }
+
+                const URLs = bs.getOption('urls');
+
+                this.browserSyncURLLocal = URLs.get('local');
+                this.browserSyncURLExternal = URLs.get('external');
+                this.browserSyncURLUI = URLs.get('ui');
+                this.browserSyncURLUIExternal = URLs.get('ui-external');
+
+                this.options.callback.bind(this);
+            });
+        });
     }
 }
 
