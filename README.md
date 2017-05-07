@@ -1,5 +1,7 @@
 # browser-sync-dev-hot-webpack-plugin
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/itgalaxy/browser-sync-dev-hot-webpack-plugin.svg)](https://greenkeeper.io/)
+
 [![NPM version](https://img.shields.io/npm/v/browser-sync-dev-hot-webpack-plugin.svg)](https://www.npmjs.org/package/browser-sync-dev-hot-webpack-plugin) 
 [![Travis Build Status](https://img.shields.io/travis/itgalaxy/browser-sync-dev-hot-webpack-plugin/master.svg?label=build)](https://travis-ci.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
 [![dependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
