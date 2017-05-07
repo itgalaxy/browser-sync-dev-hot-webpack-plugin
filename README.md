@@ -4,6 +4,7 @@
 [![Travis Build Status](https://img.shields.io/travis/itgalaxy/browser-sync-dev-hot-webpack-plugin/master.svg?label=build)](https://travis-ci.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
 [![dependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
 [![devDependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/dev-status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin?type=dev)
+[![Greenkeeper badge](https://badges.greenkeeper.io/itgalaxy/browser-sync-dev-hot-webpack-plugin.svg)](https://greenkeeper.io/)
 
 Combines `browser-sync`, `webpack-dev-middleware`, and `webpack-hot-middleware` into one plugin.
 
