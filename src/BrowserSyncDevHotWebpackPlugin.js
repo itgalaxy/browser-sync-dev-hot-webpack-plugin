@@ -4,7 +4,8 @@
 const EventEmitter = require('events');
 const browserSync = require('browser-sync');
 const merge = require('deepmerge');
-const { desire } = require('./utils');
+// eslint-disable-next-line prefer-destructuring
+const desire = require('./utils').desire;
 
 const webpackDevMiddleware = desire('webpack-dev-middleware');
 const webpackHotMiddleware = desire('webpack-hot-middleware');
@@ -31,7 +32,9 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
     }
 
     registerEvents() {
-        this.on('webpack.compilation', () => this.watcher.notify('Rebuilding...'));
+        this.on('webpack.compilation', () =>
+            this.watcher.notify('Rebuilding...')
+        );
         this.once('webpack.done', this.start.bind(this));
     }
 
@@ -43,29 +46,40 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
         this.registerEvents();
         this.compiler = compiler;
 
-        compiler.plugin('compilation', this.emit.bind(this, 'webpack.compilation'));
+        compiler.plugin(
+            'compilation',
+            this.emit.bind(this, 'webpack.compilation')
+        );
         compiler.plugin('done', this.emit.bind(this, 'webpack.done'));
     }
 
     setupWebpackDevMiddleware() {
-        this.webpackDevMiddleware = webpackDevMiddleware(this.compiler, merge.all([
-            {
-                publicPath: this.options.publicPath || this.compiler.options.output.publicPath
-            },
-            this.compiler.options.devServer || {},
-            this.options.devMiddleware
-        ]));
+        this.webpackDevMiddleware = webpackDevMiddleware(
+            this.compiler,
+            merge.all([
+                {
+                    publicPath:
+                        this.options.publicPath ||
+                            this.compiler.options.output.publicPath
+                },
+                this.compiler.options.devServer || {},
+                this.options.devMiddleware
+            ])
+        );
 
         this.middleware.push(this.webpackDevMiddleware);
     }
 
     setupWebpackHotMiddleware() {
-        this.webpackHotMiddleware = webpackHotMiddleware(this.compiler, merge.all([
-            {
-                log: this.watcher.notify.bind(this.watcher)
-            },
-            this.options.hotMiddleware
-        ]));
+        this.webpackHotMiddleware = webpackHotMiddleware(
+            this.compiler,
+            merge.all([
+                {
+                    log: this.watcher.notify.bind(this.watcher)
+                },
+                this.options.hotMiddleware
+            ])
+        );
 
         this.middleware.push(this.webpackHotMiddleware);
     }
@@ -81,21 +95,33 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
                 proxy: {
                     middleware: this.middleware,
                     proxyReq: [
-                        (proxyReq) => {
+                        proxyReq => {
                             if (this.browserSyncURLLocal) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-Local', this.browserSyncURLLocal);
+                                proxyReq.setHeader(
+                                    'X-Browser-Sync-URL-Local',
+                                    this.browserSyncURLLocal
+                                );
                             }
 
                             if (this.browserSyncURLExternal) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-External', this.browserSyncURLExternal);
+                                proxyReq.setHeader(
+                                    'X-Browser-Sync-URL-External',
+                                    this.browserSyncURLExternal
+                                );
                             }
 
                             if (this.browserSyncURLUI) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-UI', this.browserSyncURLUI);
+                                proxyReq.setHeader(
+                                    'X-Browser-Sync-URL-UI',
+                                    this.browserSyncURLUI
+                                );
                             }
 
                             if (this.browserSyncURLUIExternal) {
-                                proxyReq.setHeader('X-Browser-Sync-URL-UI-External', this.browserSyncURLUIExternal);
+                                proxyReq.setHeader(
+                                    'X-Browser-Sync-URL-UI-External',
+                                    this.browserSyncURLUIExternal
+                                );
                             }
 
                             if (webpackDevMiddleware) {
