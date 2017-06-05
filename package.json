@@ -69,6 +69,8 @@
         "webpack-hot-middleware": "^2.0.0"
     },
     "scripts": {
+        "precommit": "lint-staged",
+
         "lint:eslint": "eslint . --ignore-path .gitignore  --color",
         "lint:package": "ajv -s ./node_modules/package-schema/schema.json -d package --errors=text",
         "lint:remark": "remark . -i .gitignore -f -q",
