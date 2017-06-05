@@ -1,6 +1,6 @@
 {
     "name": "browser-sync-dev-hot-webpack-plugin",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin",
     "license": "MIT",
     "author": "itgalaxy <development@itgalaxy.company>",
@@ -38,14 +38,16 @@
     "devDependencies": {
         "ajv-cli": "^2.1.0",
         "browser-sync":"^2.18.8",
-        "eslint": "^3.15.0",
-        "eslint-plugin-ava": "^4.0.0",
+        "eslint": "^3.17.0",
+        "eslint-plugin-ava": "^4.2.0",
         "eslint-plugin-import": "^2.2.0",
-        "eslint-plugin-itgalaxy": "^46.0.0",
+        "eslint-plugin-itgalaxy": "^47.0.0",
         "eslint-plugin-jsx-a11y": "^5.0.1",
-        "eslint-plugin-lodash": "^2.1.0",
-        "eslint-plugin-node": "^4.0.0",
-        "eslint-plugin-promise": "^3.3.0",
+        "eslint-plugin-jest": "^20.0.3",
+        "eslint-plugin-lodash": "^2.3.0",
+        "eslint-plugin-node": "^5.0.0",
+        "eslint-plugin-prettier": "^2.1.1",
+        "eslint-plugin-promise": "^3.5.0",
         "eslint-plugin-react": "^7.0.0",
         "eslint-plugin-unicorn": "^2.0.0",
         "npmpub": "^3.1.0",
@@ -55,7 +57,10 @@
         "remark-preset-lint-itgalaxy": "^6.0.0",
         "webpack": "^1 || ^2 || ^2.0.0-beta || ^2.1.0-beta || ^2.2.0-rc.0",
         "webpack-dev-middleware": "^1.0.0",
-        "webpack-hot-middleware": "^2.0.0"
+        "webpack-hot-middleware": "^2.0.0",
+        "husky": "~0.13.0",
+        "lint-staged": "~3.6.0",
+        "prettier": "^1.4.2"
     },
     "peerDependencies": {
         "browser-sync": "^2.0.0",
@@ -68,6 +73,9 @@
         "lint:package": "ajv -s ./node_modules/package-schema/schema.json -d package --errors=text",
         "lint:remark": "remark . -i .gitignore -f -q",
         "lint": "npm-run-all -l --parallel lint:*",
+
+        "formatter:prettier": "eslint . --fix --ignore-path .gitignore",
+        "formatter": "npm-run-all -l -p formatter:**",
 
         "test": "npm run lint",
 
@@ -85,5 +93,8 @@
             "plugin:itgalaxy/node"
         ],
         "root": true
+    },
+    "engines": {
+        "node": ">= 4.3 < 5.0.0 || >= 5.10"
     }
 }

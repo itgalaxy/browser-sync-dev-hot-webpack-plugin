@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.1.1 - 2017-06-07
+
+-   Fixed: problems v4.
+
 # 0.1.0 - 2017-04-13
 
 -   Added: allow use plugin if `webpack-dev-middleware` or `webpack-hot-middleware` not installed.

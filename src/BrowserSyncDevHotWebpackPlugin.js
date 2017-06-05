@@ -4,7 +4,8 @@
 const EventEmitter = require('events');
 const browserSync = require('browser-sync');
 const merge = require('deepmerge');
-const { desire } = require('./utils');
+// eslint-disable-next-line prefer-destructuring
+const desire = require('./utils').desire;
 
 const webpackDevMiddleware = desire('webpack-dev-middleware');
 const webpackHotMiddleware = desire('webpack-hot-middleware');
