@@ -64,7 +64,7 @@
     },
     "peerDependencies": {
         "browser-sync": "^2.0.0",
-        "webpack": "^1 || ^2 || ^2.0.0-beta || ^2.1.0-beta || ^2.2.0-rc.0",
+        "webpack": "^3.0.0",
         "webpack-dev-middleware": "^1.0.0",
         "webpack-hot-middleware": "^2.0.0"
     },
