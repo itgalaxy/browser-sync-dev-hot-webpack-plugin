@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
 /* eslint-disable no-sync */
-const EventEmitter = require('events');
-const browserSync = require('browser-sync');
-const merge = require('deepmerge');
+const EventEmitter = require("events");
+const browserSync = require("browser-sync");
+const merge = require("deepmerge");
 // eslint-disable-next-line prefer-destructuring
-const desire = require('./utils').desire;
+const desire = require("./utils").desire;
 
-const webpackDevMiddleware = desire('webpack-dev-middleware');
-const webpackHotMiddleware = desire('webpack-hot-middleware');
+const webpackDevMiddleware = desire("webpack-dev-middleware");
+const webpackHotMiddleware = desire("webpack-hot-middleware");
 
 class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
     constructor(options) {
@@ -32,10 +32,10 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
     }
 
     registerEvents() {
-        this.on('webpack.compilation', () =>
-            this.watcher.notify('Rebuilding...')
+        this.on("webpack.compilation", () =>
+            this.watcher.notify("Rebuilding...")
         );
-        this.once('webpack.done', this.start.bind(this));
+        this.once("webpack.done", this.start.bind(this));
     }
 
     apply(compiler) {
@@ -47,10 +47,10 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
         this.compiler = compiler;
 
         compiler.plugin(
-            'compilation',
-            this.emit.bind(this, 'webpack.compilation')
+            "compilation",
+            this.emit.bind(this, "webpack.compilation")
         );
-        compiler.plugin('done', this.emit.bind(this, 'webpack.done'));
+        compiler.plugin("done", this.emit.bind(this, "webpack.done"));
     }
 
     setupWebpackDevMiddleware() {
@@ -60,7 +60,7 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
                 {
                     publicPath:
                         this.options.publicPath ||
-                            this.compiler.options.output.publicPath
+                        this.compiler.options.output.publicPath
                 },
                 this.compiler.options.devServer || {},
                 this.options.devMiddleware
@@ -98,38 +98,38 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
                         proxyReq => {
                             if (this.browserSyncURLLocal) {
                                 proxyReq.setHeader(
-                                    'X-Browser-Sync-URL-Local',
+                                    "X-Browser-Sync-URL-Local",
                                     this.browserSyncURLLocal
                                 );
                             }
 
                             if (this.browserSyncURLExternal) {
                                 proxyReq.setHeader(
-                                    'X-Browser-Sync-URL-External',
+                                    "X-Browser-Sync-URL-External",
                                     this.browserSyncURLExternal
                                 );
                             }
 
                             if (this.browserSyncURLUI) {
                                 proxyReq.setHeader(
-                                    'X-Browser-Sync-URL-UI',
+                                    "X-Browser-Sync-URL-UI",
                                     this.browserSyncURLUI
                                 );
                             }
 
                             if (this.browserSyncURLUIExternal) {
                                 proxyReq.setHeader(
-                                    'X-Browser-Sync-URL-UI-External',
+                                    "X-Browser-Sync-URL-UI-External",
                                     this.browserSyncURLUIExternal
                                 );
                             }
 
                             if (webpackDevMiddleware) {
-                                proxyReq.setHeader('X-Dev-Middleware', 'On');
+                                proxyReq.setHeader("X-Dev-Middleware", "On");
                             }
 
                             if (webpackHotMiddleware) {
-                                proxyReq.setHeader('X-Hot-Middleware', 'On');
+                                proxyReq.setHeader("X-Hot-Middleware", "On");
                             }
                         }
                     ]
@@ -163,12 +163,12 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
                     throw error;
                 }
 
-                const URLs = bs.getOption('urls');
+                const URLs = bs.getOption("urls");
 
-                this.browserSyncURLLocal = URLs.get('local');
-                this.browserSyncURLExternal = URLs.get('external');
-                this.browserSyncURLUI = URLs.get('ui');
-                this.browserSyncURLUIExternal = URLs.get('ui-external');
+                this.browserSyncURLLocal = URLs.get("local");
+                this.browserSyncURLExternal = URLs.get("external");
+                this.browserSyncURLUI = URLs.get("ui");
+                this.browserSyncURLUIExternal = URLs.get("ui-external");
 
                 this.options.callback.bind(this);
             });
