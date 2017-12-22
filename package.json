@@ -60,7 +60,7 @@
         "remark-cli": "^4.0.0",
         "remark-preset-lint-itgalaxy": "^7.0.0",
         "webpack": "^3.0.0",
-        "webpack-dev-middleware": "^1.0.0",
+        "webpack-dev-middleware": "^2.0.3",
         "webpack-hot-middleware": "^2.0.0"
     },
     "peerDependencies": {
