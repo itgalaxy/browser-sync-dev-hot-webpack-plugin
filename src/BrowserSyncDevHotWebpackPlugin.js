@@ -89,7 +89,13 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
         this.browserSyncURLExternal = null;
         this.browserSyncURLUI = null;
         this.browserSyncURLUIExternal = null;
+        
+        if(this.options.browserSync && typeof this.options.browserSync.proxy === 'string'){
+            const target = this.options.browserSync.proxy;
+            this.options.browserSync.proxy = {target};
+        }
 
+        
         this.options.browserSync = merge.all([
             {
                 proxy: {
