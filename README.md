@@ -34,7 +34,7 @@ const webpackConfig = {
             callback() {
                 console.log('Callback');
                 /*
-                    // Use browser sync server api
+                    // Use browser sync server api (https://browsersync.io/docs/api)
                     const { watcher: bs } = this;
                     bs.notify("Hellow! It's callback function from BrowserSyncHotPlugin!");
                 */
