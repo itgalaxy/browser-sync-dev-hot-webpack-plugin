@@ -170,7 +170,7 @@ class BrowserSyncDevHotWebpackPlugin extends EventEmitter {
                 this.browserSyncURLUI = URLs.get("ui");
                 this.browserSyncURLUIExternal = URLs.get("ui-external");
 
-                this.options.callback.bind(this);
+                this.options.callback.call(this);
             });
         });
     }
