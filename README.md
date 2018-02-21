@@ -1,8 +1,8 @@
 # browser-sync-dev-hot-webpack-plugin
 
-[![NPM version](https://img.shields.io/npm/v/browser-sync-dev-hot-webpack-plugin.svg)](https://www.npmjs.org/package/browser-sync-dev-hot-webpack-plugin) 
-[![Travis Build Status](https://img.shields.io/travis/itgalaxy/browser-sync-dev-hot-webpack-plugin/master.svg?label=build)](https://travis-ci.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
-[![dependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin) 
+[![NPM version](https://img.shields.io/npm/v/browser-sync-dev-hot-webpack-plugin.svg)](https://www.npmjs.org/package/browser-sync-dev-hot-webpack-plugin)
+[![Travis Build Status](https://img.shields.io/travis/itgalaxy/browser-sync-dev-hot-webpack-plugin/master.svg?label=build)](https://travis-ci.org/itgalaxy/browser-sync-dev-hot-webpack-plugin)
+[![dependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin)
 [![devDependencies Status](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin/dev-status.svg)](https://david-dm.org/itgalaxy/browser-sync-dev-hot-webpack-plugin?type=dev)
 [![Greenkeeper badge](https://badges.greenkeeper.io/itgalaxy/browser-sync-dev-hot-webpack-plugin.svg)](https://greenkeeper.io/)
 
@@ -32,7 +32,12 @@ const webpackConfig = {
             devMiddleware: DEV_MIDDLEWARE_OPTIONS,
             hotMiddleware: HOT_MIDDLEWARE_OPTIONS,
             callback() {
-                console.log('Callback')
+                console.log('Callback');
+                /*
+                    // Use browser sync server api (https://browsersync.io/docs/api)
+                    const { watcher: bs } = this;
+                    bs.notify("Hello! It's callback function from BrowserSyncHotPlugin!");
+                */
             }
         })
         // Other plugins...
@@ -49,13 +54,13 @@ See related packages docs.
 
 ## Related
 
--   [browser-sync](https://github.com/browsersync/browser-sync) - Keep multiple browsers & devices 
+-   [browser-sync](https://github.com/browsersync/browser-sync) - Keep multiple browsers & devices
     in sync when building websites.
 
--   [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) - Offers a dev middleware for webpack, 
+-   [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) - Offers a dev middleware for webpack,
     which arguments a live bundle to a directory.
 
--   [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) - Webpack hot reloading 
+-   [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) - Webpack hot reloading
     you can attach to your own server.
 
 ## Contribution
