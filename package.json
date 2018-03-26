@@ -1,97 +1,96 @@
 {
-    "name": "browser-sync-dev-hot-webpack-plugin",
-    "version": "0.2.0",
-    "description": "Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin",
-    "license": "MIT",
-    "author": "itgalaxy <development@itgalaxy.company>",
-    "contributors": [
-        {
-            "name": "Alexander Krasnoyarov",
-            "email": "alexander.krasnoyarov@itgalaxy.company",
-            "url": "https://vk.com/sterling_archer"
-        }
-    ],
-    "repository": {
-        "type": "https",
-        "url": "https://github.com/itgalaxy/browser-sync-dev-hot-webpack-plugin"
-    },
-    "keywords": [
-        "webpack",
-        "webpack-plugin",
-        "browsersync",
-        "browser-sync",
-        "livereload",
-        "serve",
-        "webpack-dev-middleware",
-        "webpack-hot-middleware"
-    ],
-    "bugs": {
-        "url": "https://github.com/itgalaxy/browser-sync-dev-hot-webpack-plugin/issues"
-    },
-    "files": [
-        "src"
-    ],
-    "main": "src/BrowserSyncDevHotWebpackPlugin.js",
-    "engines": {
-        "node": ">= 4.3 < 5.0.0 || >= 5.10"
-    },
-    "dependencies": {
-        "deepmerge": "^2.0.0"
-    },
-    "devDependencies": {
-        "browser-sync": "^2.18.8",
-        "eslint": "^4.1.1",
-        "eslint-plugin-ava": "^4.2.1",
-        "eslint-plugin-import": "^2.6.1",
-        "eslint-plugin-itgalaxy": "^50.0.0",
-        "eslint-plugin-jest": "^20.0.3",
-        "eslint-plugin-jsx-a11y": "^6.0.2",
-        "eslint-plugin-lodash": "^2.4.3",
-        "eslint-plugin-node": "^5.1.0",
-        "eslint-plugin-prettier": "^2.1.2",
-        "eslint-plugin-promise": "^3.5.0",
-        "eslint-plugin-react": "^7.1.0",
-        "eslint-plugin-unicorn": "^2.1.2",
-        "husky": "^0.14.0",
-        "lint-staged": "^5.0.0",
-        "npm-run-all": "^4.0.0",
-        "npmpub": "^3.1.0",
-        "prettier": "^1.5.2",
-        "remark-cli": "^4.0.0",
-        "remark-preset-lint-itgalaxy": "^7.0.0",
-        "webpack": "^3.0.0",
-        "webpack-dev-middleware": "^1.0.0",
-        "webpack-hot-middleware": "^2.0.0"
-    },
-    "peerDependencies": {
-        "browser-sync": "^2.0.0",
-        "webpack": "^2.0.0 || ^3.0.0",
-        "webpack-dev-middleware": "^1.0.0",
-        "webpack-hot-middleware": "^2.0.0"
-    },
-    "scripts": {
-        "precommit": "lint-staged",
-        "lint:eslint": "eslint . --ignore-path .gitignore  --color",
-        "lint:remark": "remark . -i .gitignore -f -q",
-        "lint": "npm-run-all -l --parallel lint:*",
-        "prettier": "eslint . --fix --ignore-path .gitignore",
-        "test": "npm run lint",
-        "release": "npmpub"
-    },
-    "eslintConfig": {
-        "rules": {
-            "strict": [
-                "error",
-                "global"
-            ]
-        },
-        "parserOptions": {
-            "sourceType": "script"
-        },
-        "extends": [
-            "plugin:itgalaxy/esnext",
-            "plugin:itgalaxy/node"
-        ],
-        "root": true
+  "name": "browser-sync-dev-hot-webpack-plugin",
+  "version": "0.2.1",
+  "description":
+    "Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin",
+  "license": "MIT",
+  "author": "itgalaxy <development@itgalaxy.company>",
+  "contributors": [
+    {
+      "name": "Alexander Krasnoyarov",
+      "email": "alexander.krasnoyarov@itgalaxy.company",
+      "url": "https://vk.com/sterling_archer"
     }
+  ],
+  "repository": {
+    "type": "https",
+    "url": "https://github.com/itgalaxy/browser-sync-dev-hot-webpack-plugin"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-plugin",
+    "browsersync",
+    "browser-sync",
+    "livereload",
+    "serve",
+    "webpack-dev-middleware",
+    "webpack-hot-middleware"
+  ],
+  "bugs": {
+    "url":
+      "https://github.com/itgalaxy/browser-sync-dev-hot-webpack-plugin/issues"
+  },
+  "files": ["src"],
+  "main": "src/BrowserSyncDevHotWebpackPlugin.js",
+  "engines": {
+    "node": ">= 4.3 < 5.0.0 || >= 5.10"
+  },
+  "dependencies": {
+    "deepmerge": "^2.0.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.1.1",
+    "eslint-plugin-ava": "^4.2.1",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-itgalaxy": "^66.0.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-lodash": "^2.4.3",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-unicorn": "^4.0.2",
+    "husky": "^0.14.0",
+    "lint-staged": "^7.0.0",
+    "npm-run-all": "^4.0.0",
+    "npmpub": "^3.1.0",
+    "prettier": "^1.5.2",
+    "remark-cli": "^5.0.0",
+    "remark-preset-lint-itgalaxy": "^12.0.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-middleware": "^1.0.0",
+    "webpack-hot-middleware": "^2.0.0"
+  },
+  "peerDependencies": {
+    "browser-sync": "^2.0.0",
+    "webpack": "^2.0.0 || ^3.0.0",
+    "webpack-dev-middleware": "^1.0.0",
+    "webpack-hot-middleware": "^2.0.0"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "lint:eslint": "eslint . --ignore-path .gitignore  --color",
+    "lint:remark": "remark . -i .gitignore -f -q",
+    "lint": "npm-run-all -l --parallel lint:*",
+    "prettier": "eslint . --fix --ignore-path .gitignore",
+    "test": "npm run lint",
+    "release": "npmpub"
+  },
+  "eslintConfig": {
+    "rules": {
+      "strict": ["error", "global"]
+    },
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "extends": [
+      "plugin:itgalaxy/prettier",
+      "plugin:itgalaxy/esnext",
+      "plugin:itgalaxy/node"
+    ],
+    "root": true
+  }
 }
