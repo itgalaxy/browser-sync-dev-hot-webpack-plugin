@@ -1,6 +1,6 @@
 {
   "name": "browser-sync-dev-hot-webpack-plugin",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description":
     "Combines BrowserSync, webpack-dev-middleware, and webpack-hot-middleware into one plugin",
   "license": "MIT",
@@ -67,7 +67,7 @@
   "peerDependencies": {
     "browser-sync": "^2.0.0",
     "webpack": "^2.0.0 || ^3.0.0",
-    "webpack-dev-middleware": "^1.0.0",
+    "webpack-dev-middleware": "^1.0.0 || ^2.0.0",
     "webpack-hot-middleware": "^2.0.0"
   },
   "scripts": {
