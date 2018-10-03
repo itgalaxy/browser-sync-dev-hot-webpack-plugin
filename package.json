@@ -36,7 +36,7 @@
     "node": ">= 4.3 < 5.0.0 || >= 5.10"
   },
   "dependencies": {
-    "deepmerge": "^2.0.0"
+    "deepmerge": "^2.2.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
